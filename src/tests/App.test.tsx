@@ -1,12 +1,20 @@
-import '@testing-library/jest-dom'
-import { render } from "@testing-library/react"
-import App from "../App"
+import { render, screen } from '@testing-library/react';
+import App from '../App';
+import '@testing-library/jest-dom';
 
-test('demo', () => {
-    expect(true).toBe(true)
-})
+// Mock para el método de storage
+jest.mock('./mocks/storage', () => ({
+    storage: {
+        getCompany: jest.fn(() => null),
+        setCompany: jest.fn(),
+    },
+}));
 
-test("Renders the main page", () => {
-    render(<App />)
-    expect(true).toBeTruthy()
-})
+test('renderiza la pantalla de configuración de la compañía si no hay compañía configurada', () => {
+    render(<App />);
+
+    // Verificamos que la pantalla de configuración de la compañía esté presente
+    expect(screen.getByText(/Configuración de la Empresa/i)).toBeInTheDocument();
+});
+
+

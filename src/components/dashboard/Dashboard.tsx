@@ -18,7 +18,7 @@ export function Dashboard() {
   ];
 
   return (
-    <div>
+    <div id='dashboard'>
       <div className="flex items-center mb-8">
         <Building2 className="h-8 w-8 text-indigo-600 mr-3" />
         <h1 className="text-2xl font-semibold text-gray-900">
@@ -72,9 +72,8 @@ export function Dashboard() {
                         </p>
                         <p className="text-sm text-gray-500">{transaction.category}</p>
                       </div>
-                      <div className={`text-sm font-medium ${
-                        transaction.type === 'income' ? 'text-green-600' : 'text-red-600'
-                      }`}>
+                      <div className={`text-sm font-medium ${transaction.type === 'income' ? 'text-green-600' : 'text-red-600'
+                        }`}>
                         {transaction.type === 'income' ? '+' : '-'} ${transaction.amount}
                       </div>
                     </div>
