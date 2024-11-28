@@ -9,20 +9,20 @@ export const exportToExcel = (data: any[], filename: string) => {
   XLSX.writeFile(wb, `${filename}.xlsx`);
 };
 
-export const exportToPDF = (data: any[], filename: string, title: string) => {
+export const exportToPDF = (data: Record<string, any>[], filename: string, title: string) => {
   const doc = new jsPDF();
-  
+
   // Add title
   doc.setFontSize(16);
   doc.text(title, 14, 15);
-  
+
   // Add date
   doc.setFontSize(10);
   doc.text(`Generado el: ${new Date().toLocaleString()}`, 14, 25);
 
   // Convert data to array format for autoTable
   const headers = Object.keys(data[0]);
-  const rows = data.map(item => Object.values(item));
+  const rows: any[][] = data.map(item => Object.values(item));
 
   autoTable(doc, {
     head: [headers],

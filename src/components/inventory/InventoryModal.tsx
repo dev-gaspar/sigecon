@@ -31,7 +31,7 @@ export function InventoryModal({ isOpen, onClose }: Props) {
       minStock: Number(item.minStock),
       lastUpdated: new Date().toISOString(),
     };
-    
+
     const inventory = storage.getInventory();
     storage.setInventory([...inventory, newItem]);
     storage.addAuditLog({
@@ -41,7 +41,7 @@ export function InventoryModal({ isOpen, onClose }: Props) {
       timestamp: new Date().toISOString(),
       details: `Item creado: ${newItem.name}`,
     });
-    
+
     setItem(initialState);
     onClose();
   };
@@ -49,7 +49,7 @@ export function InventoryModal({ isOpen, onClose }: Props) {
   return (
     <Dialog open={isOpen} onClose={onClose} className="relative z-50">
       <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
-      
+
       <div className="fixed inset-0 flex items-center justify-center p-4">
         <Dialog.Panel className="mx-auto max-w-sm rounded bg-white p-6 w-full">
           <div className="flex justify-between items-center mb-4">

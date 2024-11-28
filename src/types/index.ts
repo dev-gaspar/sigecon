@@ -30,7 +30,7 @@ export interface InventoryItem {
   id: string;
   name: string;
   quantity: number;
-  unit: 'unidad' | 'kg' | 'litro' | 'metro';
+  unit: 'unidad' | 'kg' | 'litro' | 'metro' | any;
   price: number;
   minStock: number;
   lastUpdated: string;

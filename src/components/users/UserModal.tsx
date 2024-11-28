@@ -14,7 +14,7 @@ export function UserModal({ isOpen, onClose }: Props) {
   const [user, setUser] = useState<Omit<User, 'id' | 'createdAt'>>({
     name: '',
     email: '',
-    role: 'user',
+    role: 'admin',
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -24,7 +24,7 @@ export function UserModal({ isOpen, onClose }: Props) {
       id: uuidv4(),
       createdAt: new Date().toISOString(),
     };
-    
+
     const users = storage.getUsers();
     storage.setUsers([...users, newUser]);
     storage.addAuditLog({
@@ -34,14 +34,14 @@ export function UserModal({ isOpen, onClose }: Props) {
       timestamp: new Date().toISOString(),
       details: `Usuario creado: ${newUser.name}`,
     });
-    
+
     onClose();
   };
 
   return (
     <Dialog open={isOpen} onClose={onClose} className="relative z-50">
       <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
-      
+
       <div className="fixed inset-0 flex items-center justify-center p-4">
         <Dialog.Panel className="mx-auto max-w-sm rounded bg-white p-6 w-full">
           <div className="flex justify-between items-center mb-4">
@@ -81,7 +81,6 @@ export function UserModal({ isOpen, onClose }: Props) {
                 value={user.role}
                 onChange={(e) => setUser({ ...user, role: e.target.value as User['role'] })}
               >
-                <option value="user">Usuario</option>
                 <option value="admin">Administrador</option>
                 <option value="accountant">Contador</option>
               </select>
