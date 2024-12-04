@@ -1,4 +1,3 @@
-import React from 'react';
 import { Building2, Users, Receipt, Package, ClipboardList } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { storage } from '../../utils/storage';
