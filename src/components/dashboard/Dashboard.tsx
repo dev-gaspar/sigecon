@@ -11,10 +11,10 @@ export function Dashboard() {
   const auditLogs = storage.getAuditLogs();
 
   const stats = [
-    { name: 'Usuarios Activos', value: users.length, icon: Users },
-    { name: 'Transacciones', value: transactions.length, icon: Receipt },
-    { name: 'Items en Inventario', value: inventory.length, icon: Package },
-    { name: 'Registros de Auditoría', value: auditLogs.length, icon: ClipboardList },
+    { name: 'Usuarios Activos', value: users.length, icon: Users, link: '/users' },
+    { name: 'Transacciones', value: transactions.length, icon: Receipt, link: '/transactions' },
+    { name: 'Items en Inventario', value: inventory.length, icon: Package, link: '/inventory' },
+    { name: 'Registros de Auditoría', value: auditLogs.length, icon: ClipboardList, link: '/audit' },
   ];
 
   return (
@@ -32,7 +32,7 @@ export function Dashboard() {
           return (
             <Link
               key={item.name}
-              to={`/${item.name.toLowerCase().split(' ')[0]}`}
+              to={`${item.link}`}
               className="bg-white overflow-hidden shadow rounded-lg hover:shadow-md transition-shadow"
             >
               <div className="p-5">
